@@ -1,0 +1,7 @@
+.margin-t-30 {
+    margin-top: 30px;
+}
+
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    background-color: inherit;
+}

@@ -1,0 +1,55 @@
+<form class="margin-t-30">
+    <div class="form-group">
+        <div class="row">
+            <label>Currency</label>
+        </div>
+        <div class="row">
+            {{#power-select
+            placeholder="select"
+            selected=selectedCurrency
+            options=model.currencies
+            onchange=(action "onCurrencyChange") as |item|}}
+                {{concat item.name ', ' item.code}}
+            {{/power-select}}
+        </div>
+    </div>
+</form>
+<form class="form-horizontal">
+    <div class="row">
+        <label class="col-sm-offset-3 col-sm-3 text-center">Currency</label>
+        <label class="col-sm-3 text-center">Rate</label>
+        <label class="col-sm-3 text-center">Total</label>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            <div class="col-sm-3">
+                <label>Base Currency</label>
+            </div>
+            <div class="col-sm-3">
+                {{one-way-input (concat model.baseCurrency.name ', ' model.baseCurrency.code) readonly=true class="form-control"}}
+            </div>
+            <div class="col-sm-3">
+                {{one-way-input model.baseCurrency.rate readonly=true class="form-control"}}
+            </div>
+            <div class="col-sm-3">
+                {{one-way-number model.total update=(action "onBaseTotalChange") class="form-control"}}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            <div class="col-sm-3">
+                <label>Convert To</label>
+            </div>
+            <div class="col-sm-3">
+                {{one-way-input (concat selectedCurrency.name ', ' selectedCurrency.code) readonly=true class="form-control"}}
+            </div>
+            <div class="col-sm-3">
+                {{one-way-input selectedCurrency.rate readonly=true class="form-control"}}
+            </div>
+            <div class="col-sm-3">
+                {{one-way-input convertedTotal readonly=true class="form-control"}}
+            </div>
+        </div>
+    </div>
+</form>
